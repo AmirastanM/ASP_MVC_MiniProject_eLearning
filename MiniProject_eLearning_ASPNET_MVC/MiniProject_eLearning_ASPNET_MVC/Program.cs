@@ -1,14 +1,41 @@
+using MiniProject_eLearning_ASPNET_MVC.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using MiniProject_eLearning_ASPNET_MVC.Data;
+using MiniProject_eLearning_ASPNET_MVC.Models;
+using MiniProject_eLearning_ASPNET_MVC.Services.Interfaces;
+using System;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
 
 
 
 
 
 
+
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
+
+
+
+
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<ISliderService, SliderService>();
+builder.Services.AddScoped<IInformationService, InformationService>();
+
+
+builder.Services.AddScoped<ISettingService, SettingService>();
 
 
 
@@ -34,5 +61,3 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-
-

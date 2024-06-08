@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\MiniProject_eLearning_ASPNET_MVC.props" />
+</Project>
