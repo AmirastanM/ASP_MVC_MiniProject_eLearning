@@ -13,14 +13,25 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Information> Informations { get; set; }
+        public DbSet<AboutCompany> AboutCompanies { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-     
+            modelBuilder.Entity<AboutCompany>().HasData(
+           new AboutCompany
+           {
+               Id = 1,
+               Titel = "Welcome to eLEARNING",
+               Description = "Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit. " +
+               "" +
+               "Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet",
+               Image = "about.jpg"
+           });
 
-            modelBuilder.Entity<Setting>().HasData(
+
+           modelBuilder.Entity<Setting>().HasData(
             new Setting
             {
                 Id = 1,
@@ -36,7 +47,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data
                   Value = "+012 345 67890",
                   SoftDeleted = false,
                   CreatedDate = DateTime.Now
-              },          
+              },
              new Setting
              {
                  Id = 3,
@@ -47,6 +58,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data
              });
 
         }
-
     }
+
+    
 }

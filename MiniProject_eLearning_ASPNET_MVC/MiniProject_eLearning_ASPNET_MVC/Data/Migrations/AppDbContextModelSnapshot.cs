@@ -50,7 +50,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 6, 8, 9, 52, 10, 497, DateTimeKind.Local).AddTicks(147),
+                            CreatedDate = new DateTime(2024, 6, 10, 1, 27, 4, 503, DateTimeKind.Local).AddTicks(7778),
                             Key = "HeaderLogo",
                             SoftDeleted = false,
                             Value = "eLEARNING"
@@ -58,7 +58,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 6, 8, 9, 52, 10, 497, DateTimeKind.Local).AddTicks(150),
+                            CreatedDate = new DateTime(2024, 6, 10, 1, 27, 4, 503, DateTimeKind.Local).AddTicks(7782),
                             Key = "Phone",
                             SoftDeleted = false,
                             Value = "+012 345 67890"
@@ -66,7 +66,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 6, 8, 9, 52, 10, 497, DateTimeKind.Local).AddTicks(152),
+                            CreatedDate = new DateTime(2024, 6, 10, 1, 27, 4, 503, DateTimeKind.Local).AddTicks(7784),
                             Key = "Email",
                             SoftDeleted = false,
                             Value = "info@example.com"
@@ -204,6 +204,37 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("MiniProject_eLearning_ASPNET_MVC.Models.AboutCompany", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Titel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AboutCompanies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit. Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet",
+                            Image = "about.jpg",
+                            Titel = "Welcome to eLEARNING"
+                        });
                 });
 
             modelBuilder.Entity("MiniProject_eLearning_ASPNET_MVC.Models.AppUser", b =>

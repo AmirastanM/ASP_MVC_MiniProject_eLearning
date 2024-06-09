@@ -33,20 +33,6 @@ namespace MiniProject_eLearning_ASPNET_MVC.Services
 
         public async Task<IEnumerable<Information>> GetAllAsync()
         {
-
-            //IEnumerable<Information> informations = await _context.Informations.ToListAsync();
-
-
-            //var result = informations.Select(m => new InformationVM
-            //{
-            //    Titel = m.Titel,
-            //    Description = m.Description,
-            //    Image = m.Image
-            //});
-
-
-            //return result;
-
             return await _context.Informations.ToListAsync();
         }
 
