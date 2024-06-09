@@ -1,6 +1,6 @@
 ﻿namespace MiniProject_eLearning_ASPNET_MVC.ViewModels.SocialMedias
 {
-    public class SocialMedia
+    public class SocialMediaVM
     {
         public int SocialMediaId { get; set; }
         public string SocialName { get; set; } 

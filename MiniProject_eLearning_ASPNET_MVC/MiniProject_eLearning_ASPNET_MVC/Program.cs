@@ -34,6 +34,7 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<ISliderService, SliderService>();
 builder.Services.AddScoped<IInformationService, InformationService>();
 builder.Services.AddScoped<IAboutCompanyService, AboutCompanyService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 
 builder.Services.AddScoped<ISettingService, SettingService>();

@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public string SocialName { get; set; } 
         public string SocialLink { get; set; }        
-        public List<InstructorSocialMedia> Instructors { get; set; }
+        public ICollection<InstructorSocialMedia> Instructors { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Information> Informations { get; set; }
         public DbSet<AboutCompany> AboutCompanies { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

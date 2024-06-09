@@ -8,6 +8,8 @@ namespace MiniProject_eLearning_ASPNET_MVC.ViewModels
        public IEnumerable<Information> Informations { get; set; }
        
        public IEnumerable<AboutCompany> AboutCompany { get; set; }
+
+        public IEnumerable<Category> Categories { get; set; }
     }
 }
 
