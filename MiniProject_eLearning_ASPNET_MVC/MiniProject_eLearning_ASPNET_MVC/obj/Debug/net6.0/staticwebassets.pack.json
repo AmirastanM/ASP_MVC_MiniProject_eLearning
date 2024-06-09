@@ -2605,12 +2605,28 @@
       "PackagePath": "staticwebassets\\css\\style.css"
     },
     {
+      "Id": "C:\\Users\\Amirastan\\Desktop\\PB-101\\BackEnd\\ASPNET_MVC_MiniProject_eLearning\\MiniProject_eLearning_ASPNET_MVC\\MiniProject_eLearning_ASPNET_MVC\\wwwroot\\img\\1cd09a7b-7f7b-4324-a75b-8c2d5f763484-home_projects.jpeg",
+      "PackagePath": "staticwebassets\\img\\1cd09a7b-7f7b-4324-a75b-8c2d5f763484-home_projects.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\Amirastan\\Desktop\\PB-101\\BackEnd\\ASPNET_MVC_MiniProject_eLearning\\MiniProject_eLearning_ASPNET_MVC\\MiniProject_eLearning_ASPNET_MVC\\wwwroot\\img\\256995f3-dee8-4b9b-8f4e-ab1574912e05-book_library.jpeg",
+      "PackagePath": "staticwebassets\\img\\256995f3-dee8-4b9b-8f4e-ab1574912e05-book_library.jpeg"
+    },
+    {
       "Id": "C:\\Users\\Amirastan\\Desktop\\PB-101\\BackEnd\\ASPNET_MVC_MiniProject_eLearning\\MiniProject_eLearning_ASPNET_MVC\\MiniProject_eLearning_ASPNET_MVC\\wwwroot\\img\\2f7ab393-4a53-4199-bd2f-230c4add23b0-carousel-2.jpg",
       "PackagePath": "staticwebassets\\img\\2f7ab393-4a53-4199-bd2f-230c4add23b0-carousel-2.jpg"
     },
     {
+      "Id": "C:\\Users\\Amirastan\\Desktop\\PB-101\\BackEnd\\ASPNET_MVC_MiniProject_eLearning\\MiniProject_eLearning_ASPNET_MVC\\MiniProject_eLearning_ASPNET_MVC\\wwwroot\\img\\7b0e31b5-1616-490f-adac-befd969ef333-skilled_instructors.jpeg",
+      "PackagePath": "staticwebassets\\img\\7b0e31b5-1616-490f-adac-befd969ef333-skilled_instructors.jpeg"
+    },
+    {
       "Id": "C:\\Users\\Amirastan\\Desktop\\PB-101\\BackEnd\\ASPNET_MVC_MiniProject_eLearning\\MiniProject_eLearning_ASPNET_MVC\\MiniProject_eLearning_ASPNET_MVC\\wwwroot\\img\\85d9ccf7-ba4a-4a60-952f-54cea1cca1ea-carousel-1.jpg",
       "PackagePath": "staticwebassets\\img\\85d9ccf7-ba4a-4a60-952f-54cea1cca1ea-carousel-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Amirastan\\Desktop\\PB-101\\BackEnd\\ASPNET_MVC_MiniProject_eLearning\\MiniProject_eLearning_ASPNET_MVC\\MiniProject_eLearning_ASPNET_MVC\\wwwroot\\img\\979a0c89-f6dc-4575-b1dc-7928c7287ab9-online_classes.jpeg",
+      "PackagePath": "staticwebassets\\img\\979a0c89-f6dc-4575-b1dc-7928c7287ab9-online_classes.jpeg"
     },
     {
       "Id": "C:\\Users\\Amirastan\\Desktop\\PB-101\\BackEnd\\ASPNET_MVC_MiniProject_eLearning\\MiniProject_eLearning_ASPNET_MVC\\MiniProject_eLearning_ASPNET_MVC\\wwwroot\\img\\about.jpg",

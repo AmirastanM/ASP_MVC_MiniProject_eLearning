@@ -10416,6 +10416,38 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\css\style.css))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\1cd09a7b-7f7b-4324-a75b-8c2d5f763484-home_projects.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MiniProject_eLearning_ASPNET_MVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MiniProject_eLearning_ASPNET_MVC</BasePath>
+      <RelativePath>img/1cd09a7b-7f7b-4324-a75b-8c2d5f763484-home_projects.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\1cd09a7b-7f7b-4324-a75b-8c2d5f763484-home_projects.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\256995f3-dee8-4b9b-8f4e-ab1574912e05-book_library.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MiniProject_eLearning_ASPNET_MVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MiniProject_eLearning_ASPNET_MVC</BasePath>
+      <RelativePath>img/256995f3-dee8-4b9b-8f4e-ab1574912e05-book_library.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\256995f3-dee8-4b9b-8f4e-ab1574912e05-book_library.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\2f7ab393-4a53-4199-bd2f-230c4add23b0-carousel-2.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>MiniProject_eLearning_ASPNET_MVC</SourceId>
@@ -10432,6 +10464,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\2f7ab393-4a53-4199-bd2f-230c4add23b0-carousel-2.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\7b0e31b5-1616-490f-adac-befd969ef333-skilled_instructors.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MiniProject_eLearning_ASPNET_MVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MiniProject_eLearning_ASPNET_MVC</BasePath>
+      <RelativePath>img/7b0e31b5-1616-490f-adac-befd969ef333-skilled_instructors.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\7b0e31b5-1616-490f-adac-befd969ef333-skilled_instructors.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\85d9ccf7-ba4a-4a60-952f-54cea1cca1ea-carousel-1.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>MiniProject_eLearning_ASPNET_MVC</SourceId>
@@ -10447,6 +10495,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\85d9ccf7-ba4a-4a60-952f-54cea1cca1ea-carousel-1.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\979a0c89-f6dc-4575-b1dc-7928c7287ab9-online_classes.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>MiniProject_eLearning_ASPNET_MVC</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/MiniProject_eLearning_ASPNET_MVC</BasePath>
+      <RelativePath>img/979a0c89-f6dc-4575-b1dc-7928c7287ab9-online_classes.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\979a0c89-f6dc-4575-b1dc-7928c7287ab9-online_classes.jpeg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\about.jpg))">
       <SourceType>Package</SourceType>
