@@ -15,6 +15,10 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data
         public DbSet<Information> Informations { get; set; }
         public DbSet<AboutCompany> AboutCompanies { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<CourseImage> CourseImages { get; set; }
+        public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<SocialMedia> SocialMedias { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

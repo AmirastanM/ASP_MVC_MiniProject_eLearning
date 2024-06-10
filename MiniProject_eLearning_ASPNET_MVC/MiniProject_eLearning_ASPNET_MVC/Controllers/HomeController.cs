@@ -10,21 +10,25 @@ namespace MiniProject_eLearning_ASPNET_MVC.Controllers
         private readonly ISliderService _sliderService;
         private readonly IInformationService _informationService;
         private readonly IAboutCompanyService _aboutCompanyService;
+        private readonly ICategoryService _categoryService;
 
         public HomeController(ISliderService sliderService,
                               IInformationService informationService,
-                              IAboutCompanyService aboutCompanyService)
+                              IAboutCompanyService aboutCompanyService,
+                              ICategoryService categoryService)
         {
             _sliderService = sliderService;
             _informationService = informationService;
             _aboutCompanyService = aboutCompanyService;
+            _categoryService = categoryService;
         }
         public async Task<IActionResult> Index()
         {
             HomeVM model = new()
             {
                 Informations = await _informationService.GetAllAsync(),
-                AboutCompany = await _aboutCompanyService.GetAllAsync()
+                AboutCompany = await _aboutCompanyService.GetAllAsync(),
+                Categories = await _categoryService.GetAllAsync(),
             };
 
             return View(model);

@@ -1,0 +1,17 @@
+﻿@model MiniProject_eLearning_ASPNET_MVC.Models.SocialMedia
+
+<h2>Edit Social Media</h2>
+
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label asp-for="SocialName"></label>
+        <input asp-for="SocialName" class="form-control" />
+        <span asp-validation-for="SocialName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SocialLink"></label>
+        <input asp-for="SocialLink" class="form-control" />
+        <span asp-validation-for="SocialLink" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

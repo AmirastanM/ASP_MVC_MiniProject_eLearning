@@ -50,7 +50,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 6, 10, 3, 36, 22, 715, DateTimeKind.Local).AddTicks(9068),
+                            CreatedDate = new DateTime(2024, 6, 10, 5, 18, 3, 674, DateTimeKind.Local).AddTicks(9158),
                             Key = "HeaderLogo",
                             SoftDeleted = false,
                             Value = "eLEARNING"
@@ -58,7 +58,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 6, 10, 3, 36, 22, 715, DateTimeKind.Local).AddTicks(9072),
+                            CreatedDate = new DateTime(2024, 6, 10, 5, 18, 3, 674, DateTimeKind.Local).AddTicks(9161),
                             Key = "Phone",
                             SoftDeleted = false,
                             Value = "+012 345 67890"
@@ -66,7 +66,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 6, 10, 3, 36, 22, 715, DateTimeKind.Local).AddTicks(9075),
+                            CreatedDate = new DateTime(2024, 6, 10, 5, 18, 3, 674, DateTimeKind.Local).AddTicks(9163),
                             Key = "Email",
                             SoftDeleted = false,
                             Value = "info@example.com"
@@ -347,9 +347,6 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                     b.Property<string>("Duration")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Images")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("InstructorId")
                         .HasColumnType("int");
 
@@ -375,6 +372,30 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                     b.HasIndex("InstructorId");
 
                     b.ToTable("Course");
+                });
+
+            modelBuilder.Entity("MiniProject_eLearning_ASPNET_MVC.Models.CourseImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("CourseImage");
                 });
 
             modelBuilder.Entity("MiniProject_eLearning_ASPNET_MVC.Models.Information", b =>
@@ -553,7 +574,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
 
             modelBuilder.Entity("MiniProject_eLearning_ASPNET_MVC.Models.Course", b =>
                 {
-                    b.HasOne("MiniProject_eLearning_ASPNET_MVC.Models.Category", null)
+                    b.HasOne("MiniProject_eLearning_ASPNET_MVC.Models.Category", "Category")
                         .WithMany("Courses")
                         .HasForeignKey("CategoryId");
 
@@ -563,7 +584,20 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Category");
+
                     b.Navigation("Instructor");
+                });
+
+            modelBuilder.Entity("MiniProject_eLearning_ASPNET_MVC.Models.CourseImage", b =>
+                {
+                    b.HasOne("MiniProject_eLearning_ASPNET_MVC.Models.Course", "Course")
+                        .WithMany("CourseImages")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
                 });
 
             modelBuilder.Entity("MiniProject_eLearning_ASPNET_MVC.Models.InstructorSocialMedia", b =>
@@ -588,6 +622,11 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
             modelBuilder.Entity("MiniProject_eLearning_ASPNET_MVC.Models.Category", b =>
                 {
                     b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("MiniProject_eLearning_ASPNET_MVC.Models.Course", b =>
+                {
+                    b.Navigation("CourseImages");
                 });
 
             modelBuilder.Entity("MiniProject_eLearning_ASPNET_MVC.Models.Instructor", b =>

@@ -1,0 +1,20 @@
+﻿@model MiniProject_eLearning_ASPNET_MVC.Models.Instructor
+
+<h2>Instructor Details</h2>
+
+<div>
+    <h4>Instructor ID: @Model.Id</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Name:</dt>
+        <dd class="col-sm-10">@Model.Name</dd>
+        <dt class="col-sm-2">Photo:</dt>
+        <dd class="col-sm-10">@Model.Photo</dd>
+        <dt class="col-sm-2">Position:</dt>
+        <dd class="col-sm-10">@Model.Position</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+</div>

@@ -7,7 +7,8 @@
         public double Rating { get; set; }
         public string Duration { get; set; }
         public int NumberOfStudents { get; set; }
-        public string Images { get; set; }
+        public Category Category { get; set; }
+        public List<CourseImage> CourseImages { get; set; }
         public int InstructorId { get; set; } 
         public Instructor Instructor { get; set; } 
 

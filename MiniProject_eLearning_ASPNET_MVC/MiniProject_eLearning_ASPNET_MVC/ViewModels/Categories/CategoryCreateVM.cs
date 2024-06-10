@@ -3,5 +3,8 @@
     public class CategoryCreateVM
     {
         public string Name { get; set; }
+        public List<IFormFile> Images { get; set; }
+       
+
     }
 }
