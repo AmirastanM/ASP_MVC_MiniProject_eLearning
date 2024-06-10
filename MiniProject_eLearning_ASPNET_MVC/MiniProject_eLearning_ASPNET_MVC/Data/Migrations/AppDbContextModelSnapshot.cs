@@ -50,7 +50,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 6, 10, 5, 18, 3, 674, DateTimeKind.Local).AddTicks(9158),
+                            CreatedDate = new DateTime(2024, 6, 11, 0, 32, 22, 575, DateTimeKind.Local).AddTicks(3718),
                             Key = "HeaderLogo",
                             SoftDeleted = false,
                             Value = "eLEARNING"
@@ -58,7 +58,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 6, 10, 5, 18, 3, 674, DateTimeKind.Local).AddTicks(9161),
+                            CreatedDate = new DateTime(2024, 6, 11, 0, 32, 22, 575, DateTimeKind.Local).AddTicks(3721),
                             Key = "Phone",
                             SoftDeleted = false,
                             Value = "+012 345 67890"
@@ -66,7 +66,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 6, 10, 5, 18, 3, 674, DateTimeKind.Local).AddTicks(9163),
+                            CreatedDate = new DateTime(2024, 6, 11, 0, 32, 22, 575, DateTimeKind.Local).AddTicks(3724),
                             Key = "Email",
                             SoftDeleted = false,
                             Value = "info@example.com"
@@ -338,7 +338,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -371,7 +371,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
 
                     b.HasIndex("InstructorId");
 
-                    b.ToTable("Course");
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("MiniProject_eLearning_ASPNET_MVC.Models.CourseImage", b =>
@@ -395,7 +395,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("CourseImage");
+                    b.ToTable("CourseImages");
                 });
 
             modelBuilder.Entity("MiniProject_eLearning_ASPNET_MVC.Models.Information", b =>
@@ -431,10 +431,10 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Photo")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Position")
@@ -445,7 +445,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Instructor");
+                    b.ToTable("Instructors");
                 });
 
             modelBuilder.Entity("MiniProject_eLearning_ASPNET_MVC.Models.InstructorSocialMedia", b =>
@@ -462,13 +462,16 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                     b.Property<int>("SocialMediaId")
                         .HasColumnType("int");
 
+                    b.Property<string>("SocialMediaLink")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("InstructorId");
 
                     b.HasIndex("SocialMediaId");
 
-                    b.ToTable("InstructorSocialMedia");
+                    b.ToTable("InstructorSocialMedias");
                 });
 
             modelBuilder.Entity("MiniProject_eLearning_ASPNET_MVC.Models.Slider", b =>
@@ -510,15 +513,21 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("SocialLink")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("SocialName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("SoftDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("SocialMedia");
+                    b.ToTable("SocialMedias");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -576,7 +585,9 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                 {
                     b.HasOne("MiniProject_eLearning_ASPNET_MVC.Models.Category", "Category")
                         .WithMany("Courses")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("MiniProject_eLearning_ASPNET_MVC.Models.Instructor", "Instructor")
                         .WithMany()
@@ -609,7 +620,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("MiniProject_eLearning_ASPNET_MVC.Models.SocialMedia", "SocialMedia")
-                        .WithMany("Instructors")
+                        .WithMany()
                         .HasForeignKey("SocialMediaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -632,11 +643,6 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data.Migrations
             modelBuilder.Entity("MiniProject_eLearning_ASPNET_MVC.Models.Instructor", b =>
                 {
                     b.Navigation("SocialMedias");
-                });
-
-            modelBuilder.Entity("MiniProject_eLearning_ASPNET_MVC.Models.SocialMedia", b =>
-                {
-                    b.Navigation("Instructors");
                 });
 #pragma warning restore 612, 618
         }

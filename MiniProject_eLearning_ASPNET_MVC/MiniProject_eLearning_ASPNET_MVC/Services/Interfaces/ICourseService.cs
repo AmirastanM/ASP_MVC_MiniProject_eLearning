@@ -6,7 +6,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Services.Interfaces
     public interface ICourseService
     {
         Task<IEnumerable<Course>> GetAllWithImagesAsync();
-        Task<IEnumerable<Course>> GetAllAsync();
+        Task<List<Course>> GetAllAsync();
         Task<Course> GetByIdWithAllDatasAsync(int id);
         Task<Course> GetByIdAsync(int id);      
         IEnumerable<CourseVM> GetMappedDatas(IEnumerable<Course> products);
@@ -17,6 +17,6 @@ namespace MiniProject_eLearning_ASPNET_MVC.Services.Interfaces
         Task<CourseImage> GetCourseImageByIdAsync(int id);
         Task<Course> GetCourseByNameAsync(string name);
         Task ImageDeleteAsync(CourseImage image);
-
+        Task<bool> ExistExceptByIdAsync(int id, string name);
     }
 }

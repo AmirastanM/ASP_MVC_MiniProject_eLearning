@@ -4,7 +4,8 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }     
+        public decimal Price { get; set; }
+        public int? Rating { get; set; }
         public string Duration { get; set; }
         public int NumberOfStudents { get; set; }
         public int CategoryId { get; set; }

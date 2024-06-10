@@ -6,7 +6,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.ViewModels
 {
     public class HomeVM
     {
-        public IEnumerable<InstructorVM> Instructors { get; set; }
+        public IEnumerable<Instructor> Instructors { get; set; }
         public IEnumerable<Information> Informations { get; set; }
         public IEnumerable<AboutCompany> AboutCompany { get; set; }
         public IEnumerable<Category> Categories { get; set; }
@@ -14,7 +14,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.ViewModels
 
         public HomeVM()
         {
-            Instructors = new List<InstructorVM>();
+            Instructors = new List<Instructor>();
             Informations = new List<Information>();
             Categories = new List<Category>();
             AboutCompany = new List<AboutCompany>();

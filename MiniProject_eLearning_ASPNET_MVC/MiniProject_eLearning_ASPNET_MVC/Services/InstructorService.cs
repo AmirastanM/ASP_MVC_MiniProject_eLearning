@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using MiniProject_eLearning_ASPNET_MVC.Data;
 using MiniProject_eLearning_ASPNET_MVC.Models;
 using MiniProject_eLearning_ASPNET_MVC.Services.Interfaces;
@@ -18,7 +19,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Services
 
         public async Task<IEnumerable<Instructor>> GetAllAsync()
         {
-            return await _context.Instructors.ToListAsync();
+            return await _context.Instructors.Include(m => m.SocialMedias).ToListAsync();
         }
 
         public async Task<Instructor> GetByIdAsync(int id)
@@ -28,7 +29,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Services
 
         public async Task CreateAsync(Instructor instructor)
         {
-            _context.Instructors.Add(instructor);
+            await _context.AddAsync(instructor);
             await _context.SaveChangesAsync();
         }
 
@@ -38,7 +39,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Services
             if (existingInstructor != null)
             {
                 existingInstructor.Name = instructor.Name;
-                existingInstructor.Photo = instructor.Photo;
+                existingInstructor.Image = instructor.  Image;
                 existingInstructor.Position = instructor.Position;
                 existingInstructor.SocialMedias = instructor.SocialMedias;
 
@@ -46,14 +47,10 @@ namespace MiniProject_eLearning_ASPNET_MVC.Services
             }
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Instructor instructor)
         {
-            var instructor = await _context.Instructors.FindAsync(id);
-            if (instructor != null)
-            {
-                _context.Instructors.Remove(instructor);
-                await _context.SaveChangesAsync();
-            }
+            _context.Instructors.Remove(instructor);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<bool> ExistAsync(string name)
@@ -66,8 +63,23 @@ namespace MiniProject_eLearning_ASPNET_MVC.Services
             return await _context.Instructors.AnyAsync(m => m.Id != id && m.Name == name);
         }
 
-
-        
+        public async Task EditAsync()
+        {
+            await _context.SaveChangesAsync();
         }
+
+        public async Task<Instructor> GetByIdWithSocialAsync(int id)
+        {
+            return await _context.Instructors.Include(m => m.SocialMedias).FirstOrDefaultAsync(m => m.Id == id);
+
+        }
+
+        public async Task<SelectList> GetAllSelectedAsync()
+        {
+            var instructor = await _context.Instructors.Where(m => !m.SoftDeleted).ToListAsync();
+            return new SelectList(instructor, "Id", "Name");
+
+        }
+    }
     }
 

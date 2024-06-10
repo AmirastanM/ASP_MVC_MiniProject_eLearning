@@ -13,13 +13,9 @@
             <thead>
                 <tr>
                     <th>Course Name</th>
-                    <th>Price</th>
-                    <th>Rating</th>
-                    <th>Duration</th>
-                    <th>Number of Students</th>
+                    <th>Price</th>   
                     <th>Category</th>
-                    <th>Instructor</th>
-                    <th>Main Image</th>
+                    <th>Instructor</th>                   
                     <th>Operations</th>
                 </tr>
             </thead>
@@ -28,14 +24,13 @@
                 {
                     <tr>
                         <td>@item.Name</td>
-                        <td>@item.Price</td>
-                        <td>@item.Rating</td>
-                        <td>@item.Duration</td>
-                        <td>@item.NumberOfStudents</td>
+                        <td>@item.Price</td>   
                         <td>@item.CategoryName</td>
-                        <td>@item.InstructorName</td>
-                        <td>@item.MainImage</td>
+                        <td>@item.InstructorName</td>                     
                         <td>
+                            <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-primary text-white small">
+                                <i class="fa-solid fa-info"></i>
+                            </a>
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning text-white small">
                                 <i class="ti-marker-alt"></i>
                             </a>

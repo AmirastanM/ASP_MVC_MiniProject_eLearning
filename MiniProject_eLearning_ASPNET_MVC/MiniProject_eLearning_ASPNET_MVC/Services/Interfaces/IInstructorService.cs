@@ -1,4 +1,5 @@
-﻿using MiniProject_eLearning_ASPNET_MVC.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using MiniProject_eLearning_ASPNET_MVC.Models;
 using MiniProject_eLearning_ASPNET_MVC.ViewModels.Instructors;
 
 namespace MiniProject_eLearning_ASPNET_MVC.Services.Interfaces
@@ -13,12 +14,12 @@ namespace MiniProject_eLearning_ASPNET_MVC.Services.Interfaces
 
         Task EditAsync(int id, Instructor instructor);
 
-        Task DeleteAsync(int id);
+        Task DeleteAsync(Instructor instructor);
 
         Task<bool> ExistAsync(string name);
 
-        Task<bool> ExistExceptByIdAsync(int id, string name);         
-
-      
+        Task<bool> ExistExceptByIdAsync(int id, string name);
+        Task<Instructor> GetByIdWithSocialAsync(int id);
+        Task<SelectList> GetAllSelectedAsync();
     }
 }

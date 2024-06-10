@@ -3,7 +3,7 @@
     public class SocialMediaVM
     {
         public int SocialMediaId { get; set; }
-        public string SocialName { get; set; } 
-        public string SocialLink { get; set; } 
+        public string? SocialName { get; set; } 
+        public string? URL { get; set; } 
     }
 }

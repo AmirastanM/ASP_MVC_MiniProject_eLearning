@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using MiniProject_eLearning_ASPNET_MVC.Data;
 using MiniProject_eLearning_ASPNET_MVC.Models;
 using MiniProject_eLearning_ASPNET_MVC.Services.Interfaces;
@@ -27,16 +28,9 @@ namespace MiniProject_eLearning_ASPNET_MVC.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task EditAsync(int id, SocialMedia socialMedia)
+        public async Task EditAsync()
         {
-            var existingSocialMedia = await _context.SocialMedias.FindAsync(id);
-            if (existingSocialMedia != null)
-            {
-                existingSocialMedia.SocialName = socialMedia.SocialName;
-                existingSocialMedia.SocialLink = socialMedia.SocialLink;
-
-                await _context.SaveChangesAsync();
-            }
+            await _context.SaveChangesAsync();
         }
 
         public async Task<bool> ExistAsync(string socialName)
@@ -49,18 +43,16 @@ namespace MiniProject_eLearning_ASPNET_MVC.Services
             return await _context.SocialMedias.ToListAsync();
         }
 
-        public async Task<IEnumerable<SocialMedia>> GetAllByInstructorIdAsync(int instructorId)
+        public async Task<SelectList> GetAllSelectedAsync()
         {
-            var instructor = await _context.Instructors
-                                   .Include(i => i.SocialMedias)
-                                   .FirstOrDefaultAsync(i => i.Id == instructorId);
+            var socials = await _context.SocialMedias.Where(m => !m.SoftDeleted).ToListAsync();
+            return new SelectList(socials, "Id", "Name");
 
-            return (IEnumerable<SocialMedia>)(instructor?.SocialMedias);
         }
 
         public async Task<SocialMedia> GetByIdAsync(int id)
         {
-            return await _context.SocialMedias.FindAsync(id);
+            return await _context.SocialMedias.FirstOrDefaultAsync(m => m.Id == id);
         }
     }
 }

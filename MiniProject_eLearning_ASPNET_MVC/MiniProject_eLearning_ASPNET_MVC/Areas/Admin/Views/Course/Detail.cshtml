@@ -1,4 +1,4 @@
-﻿@model Category
+﻿@model Course
 @{
     ViewData["Title"] = "Detail";
 }
@@ -22,25 +22,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var course in Model.Courses)
-                        {
-                            foreach (var image in course.CourseImages)
-                            {
-                                <tr>
-                                    <td class="p-4">
-                                        <div class="media align-items-center">
-                                            <img style="width:100px; height:100px;" src="~/img/@image.Name" class="d-block ui-w-40 ui-bordered mr-4" alt="">
-                                            <div class="media-body">
-                                                <a href="#" class="d-block text-dark">@course.Name - @image.IsMain</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-right font-weight-semibold align-middle p-4">$@course.Price</td>
-                                    <td class="align-middle p-4">@Model.Courses.Count</td>
-                                    <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
-                                </tr>
-                            }
-                        }
+                        <tr>
+                            <td class="p-4">
+                                <div class="media align-items-center">
+                                    <img style="width:100px; height:100px;" src="~/img/@Model.CourseImages[0].Name" class="d-block ui-w-40 ui-bordered mr-4" alt="">
+                                    <div class="media-body">
+                                        <a href="#" class="d-block text-dark">@Model.Name - @* @image.IsMain *@</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-right font-weight-semibold align-middle p-4">$@Model.Price</td>
+                            <td class="align-middle p-4">@Model.Name</td>
+                            <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

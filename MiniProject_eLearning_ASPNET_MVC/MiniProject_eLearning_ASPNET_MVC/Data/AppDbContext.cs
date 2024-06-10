@@ -19,11 +19,15 @@ namespace MiniProject_eLearning_ASPNET_MVC.Data
         public DbSet<CourseImage> CourseImages { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<SocialMedia> SocialMedias { get; set; }
-
-
+        public DbSet<InstructorSocialMedia> InstructorSocialMedias { get; set; }
+  
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Instructor>().HasQueryFilter(m => !m.SoftDeleted);
+            modelBuilder.Entity<SocialMedia>().HasQueryFilter(m => !m.SoftDeleted);
+
             modelBuilder.Entity<AboutCompany>().HasData(
            new AboutCompany
            {

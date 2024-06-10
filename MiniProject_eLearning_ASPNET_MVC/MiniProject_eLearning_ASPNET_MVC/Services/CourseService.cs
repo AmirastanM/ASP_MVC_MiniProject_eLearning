@@ -30,10 +30,18 @@ namespace MiniProject_eLearning_ASPNET_MVC.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Course>> GetAllAsync()
+        public async Task<bool> ExistExceptByIdAsync(int id, string name)
         {
-            return await _context.Courses.Include(m => m.CourseImages).Include(m => m.Category).ToListAsync();
+            return await _context.Categories.AnyAsync(m => m.Name.ToLower() == name.ToLower() && m.Id != id);
+        }
 
+        public async Task<List<Course>> GetAllAsync()
+        {
+            return await _context.Courses
+                                 .Include(m => m.CourseImages)
+                                 .Include(m => m.Category)
+                                 .Include(m => m.Instructor)
+                                 .ToListAsync();
         }
 
         public async Task<IEnumerable<Course>> GetAllWithImagesAsync()
@@ -43,7 +51,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Services
 
         public async Task<Course> GetByIdAsync(int id)
         {
-            return await _context.Courses.FindAsync(id);
+            return await _context.Courses.Include(m => m.CourseImages).FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<Course> GetByIdWithAllDatasAsync(int id)
@@ -51,6 +59,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Services
             return await _context.Courses.Where(m => m.Id == id)
                 .Include(m => m.Category)
                 .Include(m => m.CourseImages)
+                .Include(m => m.Instructor)
                 .FirstOrDefaultAsync();
         }
 

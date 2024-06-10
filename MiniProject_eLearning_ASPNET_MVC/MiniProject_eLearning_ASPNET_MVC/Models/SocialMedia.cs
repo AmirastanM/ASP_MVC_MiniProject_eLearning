@@ -1,10 +1,9 @@
 ﻿namespace MiniProject_eLearning_ASPNET_MVC.Models
 {
-    public class SocialMedia
+    public class SocialMedia : BaseEntity
     {
-        public int Id { get; set; }
+        
         public string SocialName { get; set; } 
-        public string SocialLink { get; set; }        
-        public ICollection<InstructorSocialMedia> Instructors { get; set; }
-    }
+        public string Url { get; set; }        
+         }
 }

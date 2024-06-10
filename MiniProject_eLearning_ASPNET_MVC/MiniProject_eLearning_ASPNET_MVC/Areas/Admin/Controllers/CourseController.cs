@@ -17,15 +17,18 @@ namespace MiniProject_eLearning_ASPNET_MVC.Areas.Admin.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IWebHostEnvironment _env;
         private readonly AppDbContext _context;
+        private readonly IInstructorService _instructorService;
         public CourseController(ICourseService courseService,
                                 ICategoryService categoryService,
                                 IWebHostEnvironment env,
-                                AppDbContext context)
+                                AppDbContext context,
+                                IInstructorService instructorService)
         {
             _courseService = courseService;
             _categoryService = categoryService;
             _env = env;
             _context = context;
+            _instructorService = instructorService;
         }
 
         [HttpGet]
@@ -53,42 +56,17 @@ namespace MiniProject_eLearning_ASPNET_MVC.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Detail(int? id)
         {
-            if (id is null) return BadRequest();
+            Course course = await _courseService.GetByIdWithAllDatasAsync((int)id);
 
-            var existProduct = await _courseService.GetByIdWithAllDatasAsync((int)id);
-            if (existProduct is null) return NotFound();
-
-            List<CourseImageVM> images = new();
-            foreach (var item in existProduct.CourseImages)
-            {
-                images.Add(new CourseImageVM
-                {
-                    Image = item.Name,
-                    IsMain = item.IsMain
-                });
-            }
-
-            CourseDetailVM response = new()
-            {
-                Id = existProduct.Id,
-                Name = existProduct.Name,
-                Price = existProduct.Price,
-                Rating = existProduct.Rating,
-                Duration = existProduct.Duration,
-                NumberOfStudents = existProduct.NumberOfStudents,
-                CategoryName = existProduct.Category.Name,
-                InstructorName = existProduct.Instructor.Name,
-                Images = images
-            };
-
-            return View(response);
+            return View(course);
         }
 
         [HttpGet]
         public async Task<IActionResult> Create()
     {
         ViewBag.categories = await _categoryService.GetAllSelectedAsync();
-        return View();
+            ViewBag.instructor = await _instructorService.GetAllSelectedAsync();
+            return View();
     }
 
         [HttpPost]
@@ -96,8 +74,8 @@ namespace MiniProject_eLearning_ASPNET_MVC.Areas.Admin.Controllers
         public async Task<IActionResult> Create(CourseCreateVM request)
     {
         ViewBag.categories = await _categoryService.GetAllSelectedAsync();
-
-        if (!ModelState.IsValid)
+            ViewBag.instructor = await _instructorService.GetAllSelectedAsync();
+            if (!ModelState.IsValid)
         {
             return View();
         }
@@ -136,8 +114,7 @@ namespace MiniProject_eLearning_ASPNET_MVC.Areas.Admin.Controllers
             Name = request.Name,
             Price = decimal.Parse(request.Price.Replace(".", ",")),
             Rating = request.Rating,
-            Duration = request.Duration,
-            NumberOfStudents = request.NumberOfStudents,
+            Duration = request.Duration,            
             Category = await _categoryService.GetByIdAsync(request.CategoryId),
             CourseImages = images,
             InstructorId = request.InstructorId
@@ -182,20 +159,29 @@ namespace MiniProject_eLearning_ASPNET_MVC.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var categories = await _categoryService.GetAllAsync();
+            ViewBag.categories = await _categoryService.GetAllSelectedAsync();
 
-            var viewModel = new CourseVM
+            List<CourseImageVM> images = new();
+            foreach (var item in course.CourseImages)
             {
-                Id = course.Id,
+                images.Add(new CourseImageVM
+                {
+                    Id = item.Id,
+                    Image = item.Name,
+                    IsMain = item.IsMain
+                });
+            }
+            CourseEditVM response = new()
+            {
                 Name = course.Name,
-                Price = course.Price,                            
-                NumberOfStudents = course.NumberOfStudents,              
-                CategoryName = course.Category?.Name,         
-                InstructorName = course.Instructor?.Name,
-                MainImage = course.CourseImages?.FirstOrDefault(ci => ci.IsMain)?.Name
+                Duration = course.Duration,
+                Rating = (int?)course.Rating,
+                Price = course.Price,
+                Images = images,
+                CategoryId = course.CategoryId
             };
 
-            return View(viewModel);
+            return View(response);
         }
 
         [HttpPost]
@@ -213,26 +199,82 @@ namespace MiniProject_eLearning_ASPNET_MVC.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            List<CourseImageVM> images = new();
+
+            foreach (var item in course.CourseImages)
+            {
+                images.Add(new CourseImageVM
+                {
+                    Id = item.Id,
+                    Image = item.Name,
+                    IsMain = item.IsMain
+                });
+            }
+            request.Images = images;
+
+
             if (!ModelState.IsValid)
             {
-               
+                ViewBag.categories = await _categoryService.GetAllSelectedAsync();
                 return View(request);
             }
 
-          
+
+            if (await _courseService.ExistExceptByIdAsync((int)id, request.Name))
+            {
+                ModelState.AddModelError("Name", "This name already exist");
+
+                return View(request);
+
+            }
+
+
+            if (request.NewImage is not null)
+            {
+
+                foreach (var item in request.NewImage)
+                {
+                    if (!item.CheckFileType("image/"))
+                    {
+                        ModelState.AddModelError("NewImages", "Input can accept only image format");
+                        return View(request);
+
+                    }
+                    if (!item.CheckFileSize(500))
+                    {
+                        ModelState.AddModelError("NewImages", "Image size must be max 500 KB ");
+                        return View(request);
+                    }
+
+
+                }
+                foreach (var item in request.NewImage)
+                {
+                    string oldPath = _env.GenerateFilePath("img", item.Name);
+                    oldPath.DeleteFileFromLocal();
+                    string fileName = Guid.NewGuid().ToString() + "-" + item.FileName;
+                    string newPath = _env.GenerateFilePath("img", fileName);
+
+                    await item.SaveFileToLocalAsync(newPath);
+
+                    course.CourseImages.Add(new CourseImage { Name = fileName });
+
+                }
+
+            }
             course.Name = request.Name;
+            course.Duration = request.Duration;
+            course.Duration = request.Rating.ToString();
+            course.CategoryId = request.CategoryId;
             course.Price = request.Price;
 
 
-
-
-
-            await _context.SaveChangesAsync();
-
+            await _courseService.EditAsync();
             return RedirectToAction(nameof(Index));
+
         }
 
-        [HttpPost]
+            [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> isMain(int? id)
         {

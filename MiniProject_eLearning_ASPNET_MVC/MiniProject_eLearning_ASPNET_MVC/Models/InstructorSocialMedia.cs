@@ -10,5 +10,6 @@ namespace MiniProject_eLearning_ASPNET_MVC.Models
 
         public int SocialMediaId { get; set; }
         public SocialMedia SocialMedia { get; set; }
+        public string SocialMediaLink  { get; set; }
     }
 }

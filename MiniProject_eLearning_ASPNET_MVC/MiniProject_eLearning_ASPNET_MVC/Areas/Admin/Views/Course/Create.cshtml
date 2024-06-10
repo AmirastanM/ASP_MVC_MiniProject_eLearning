@@ -7,36 +7,23 @@
     <form method="post" asp-action="Create" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Course Name</label>
-            <input asp-for="Name" class="form-control form-bg-light" maxlength="100" placeholder="Course Name...">
+            <input asp-for="Name" class="form-control" id="inputText" placeholder="Name...">
             <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label for="price">Price</label>
-            <input asp-for="Price" class="form-control form-bg-light" placeholder="Price...">
-            <span asp-validation-for="Price" class="text-danger"></span>
-        </div>      
-        <div class="form-group">
-            <label for="duration">Duration</label>
-            <input asp-for="Duration" class="form-control form-bg-light" placeholder="Duration...">
+            <input asp-for="Duration" class="form-control" id="inputText" placeholder="Duration...">
             <span asp-validation-for="Duration" class="text-danger"></span>
-        </div>    
-        <div class="form-group">
-            <label for="categoryId">Category</label>
-            <select asp-for="CategoryId" asp-items="@ViewBag.categories" class="form-control form-bg-light">
-            </select>
-            <span asp-validation-for="CategoryId" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label for="instructorId">Instructor</label>
-            <input asp-for="InstructorId" class="form-control form-bg-light" placeholder="Instructor...">
-            <span asp-validation-for="InstructorId" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label for="images">Images</label>
-            <input type="file" asp-for="Images" multiple class="form-control form-bg-light" accept="image/*">
+            <input asp-for="Rating" type="number" class="form-control" id="inputText" placeholder="Rating...">
+            <span asp-validation-for="Rating" class="text-danger"></span>
+            <input asp-for="Price" type="number" class="form-control" id="inputText" placeholder="Price...">
+            <span asp-validation-for="Price" class="text-danger"></span>
+            <label for="category">Category</label>
+            <select asp-for="CategoryId" asp-items="@ViewBag.categories" class="form-control"></select>
+            <label for="category">Instructor</label>
+            <select asp-for="InstructorId" asp-items="@ViewBag.instructor" class="form-control"></select>
+
+            <input asp-for="Images" class="form-control" id="inputText" placeholder="Image...">
             <span asp-validation-for="Images" class="text-danger"></span>
-        </div>
         <button type="submit" class="btn btn-primary mr-2">Submit</button>
         <a asp-action="Index" class="btn btn-light mr-2">Cancel</a>
+        </div>
     </form>
 </div>
